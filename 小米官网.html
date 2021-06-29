@@ -1,0 +1,1285 @@
+<!doctype <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>小米商城仿写</title>
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var head_search_content = document.getElementById("head_search_content");
+				var head_seach_box = document.getElementById("head_seach_box");
+				var head_seach_logo = document.getElementById("head_seach_logo");
+				var flag = 0; //0表示允许执行数据
+				head_seach_box.onmousemove = function() {
+					if (flag == 0) {
+						head_seach_box.style.borderColor = "rgb(176,176,176)";
+						head_seach_logo.style.borderColor = "rgb(176,176,176)";
+					}
+				}
+				head_seach_logo.onmousemove = function() {
+					if (flag == 0) {
+						head_seach_box.style.borderColor = "rgb(176,176,176)";
+						head_seach_logo.style.borderColor = "rgb(176,176,176)";
+					}
+				}
+				head_seach_box.onmouseout = function() {
+					if (flag == 0) {
+						head_seach_box.style.borderColor = "rgb(224,224,224)";
+						head_seach_logo.style.borderColor = "rgb(224,224,224)";
+					}
+
+				}
+				head_seach_logo.onmouseout = function() {
+					if (flag == 0) {
+						head_seach_box.style.borderColor = "rgb(224,224,224)";
+						head_seach_logo.style.borderColor = "rgb(224,224,224)";
+					}
+
+				}
+				head_seach_box.onfocus = function() {
+					head_seach_box.style.borderColor = "rgb(225,103,0)";
+					head_seach_logo.style.borderColor = "rgb(225,103,0)";
+					//head_search_content.style.visibility="visible";//显示菜单框
+					head_search_content.style.display = "block";
+					flag = 1; //设置鼠标移开样式不变
+				}
+				head_seach_box.onblur = function() {
+					head_seach_box.style.borderColor = "rgb(224,224,224)";
+					head_seach_logo.style.borderColor = "rgb(224,224,224)";
+					head_search_content.style.display = "none"; //失去焦点时菜单框隐藏
+					flag = 0;
+				}
+				//轮播部分
+				//1 先获取图片个数
+				$(function($) {
+					var img_length = $("#box img").length;
+					// alert(img_length);
+				})
+				//2 设置当前切换的索引,默认当前显示的是第0张
+				var index = 0;
+				//3,4，步必须是计时器设定的
+				setInterval(function() {
+					if (index == 5) {
+						index = 0;
+					} else {}
+					//3 设置当前索引所指的图片在页面中淡出
+					//而其他兄弟图片全部淡出
+					$("#banner_img img").eq(index).fadeIn("slow").siblings().fadeOut("slow");
+					//4 改变索引，引导下一次图片切换
+					index = index + 1;
+				}, 2000)
+			})
+			//倒计时部分
+			//1 准备时间变量
+			var h = 2;
+			var m = 1;
+			var s = 10;
+			$("#m").html(m);
+			$("#s").html(s);
+			$("#h").html(h);
+			// 2 通过逻辑改变时分秒，将改变的数字加载到对应的元素中，
+			//循环执行每隔一秒执行一次
+			setInterval(function() {
+				// 每隔一秒秒数减一，知道0，向分借1，自己变59，分减一
+				if (s != 0) {
+					// 秒数-1
+					s = s - 1;
+					$("#s").html(s);
+				} else {
+					if (m != 0) {
+						//向分借一位,自己变成59,分减一
+						m = m - 1;
+						s = 59;
+						$("#s").html(s);
+						$("#m").html(m);
+					} else {
+						if (h != 0) {
+							//向十借一位,自己变59,秒变59
+							h = h - 1;
+							m = 59;
+							s = 59;
+							$("#s").html(s)
+							$("#m").html(m)
+							$("#h").html(h)
+						} else {
+							alert("到计时结束了!");
+						}
+					}
+				}
+			}, 1000)
+		</script>
+		<style type="text/css">
+			/*让页面中所有元素莫热门自带的内外边距全部清空  */
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+
+			#top_box {
+				height: 40px;
+				background: #333;
+				position: relative;
+				z-index: 999;
+			}
+
+			#top {
+				width: 1226px;
+				height: 40px;
+				background: #333;
+				margin: 0 auto;
+				/* 块级元素居中 */
+			}
+
+			#top_left {
+				width: 705.01px;
+				height: 40px;
+				/* background: yellow; */
+				float: left;
+			}
+
+			#top_left li {
+				list-style: none;
+				/* 去掉列表标记 */
+				float: left;
+				font-size: 12px;
+				line-height: 40px;
+				color: #b0b0b0;
+				/* 文字居中 */
+			}
+
+			#top_left .seq {
+				margin: 0px 3.6px;
+				color: rgb(66, 66, 66);
+			}
+
+			#top_left .content:hover {
+				color: rgb(255, 255, 255);
+			}
+
+			#top_right {
+				width: 278px;
+				height: 40px;
+				/* background: red; */
+				float: right;
+
+			}
+
+			#top_right_left {
+				/* background: yellow; */
+				width: 143px;
+				height: 40px;
+				float: left;
+			}
+
+			#top_right_left li {
+				float: left;
+				list-style: none;
+				font-size: 12px;
+				line-height: 40px;
+				color: #b0b0b0;
+			}
+
+			#top_right_left .seq {
+				margin: 0px 3.6px;
+				color: rgb(66, 66, 66);
+			}
+
+			#top_right_left .content:hover {
+				color: rgb(255, 255, 255);
+			}
+
+			#top_right_right {
+				/* background: red; */
+				width: 120px;
+				height: 40px;
+				float: right;
+				/* 内容样式 */
+				font-size: 12px;
+				color: #b0b0b0;
+				background: rgb(66, 66, 66);
+				line-height: 40px;
+				text-align: center;
+				/* 让指定效果延时 */
+				transition-delay: 400ms;
+				transition-property: background color;
+			}
+
+			#right_right_content {
+				width: 350px;
+				height: 100px;
+				background: white;
+				float: right;
+				/* 文本样式 */
+				color: rgb(66, 66, 66);
+				/* 垂直居中 */
+				line-height: 100px;
+				/* 盒子阴影 */
+				box-shadow: 0px 0px 10px #888888;
+				position: relative;
+				/*相对于自身当前位置偏移*/
+				top: -100px;
+				z-index: -1;
+				/* 反向过渡效果 */
+				transition-property: top;
+				/* 设置参与过度的属性 */
+				transition-duration: 400ms;
+				/* 设置过渡时间 */
+			}
+
+			#top_right_right:hover {
+				color: rgb(255, 103, 0);
+				background: white;
+				transition-delay: 0ms;
+				transition-property: background color;
+			}
+
+			#top_right_right:hover #right_right_content {
+				top: 0px;
+				/* 过渡效果 */
+				transition-property: top;
+				/* 设置参与过度的属性 */
+				transition-duration: 400ms;
+				/* 设置过渡时间 */
+
+			}
+
+			/* #############第二块:头部区域#####################3 */
+			#head {
+				width: 1226px;
+				height: 100px;
+				/* background: yellowgreen; */
+				margin: 0 auto;
+				/* 内容居中 */
+				position: relative;
+				/* z-index: 100; */
+			}
+
+			#head_logo {
+				width: 55px;
+				height: 55px;
+				/* background: red; */
+				float: left;
+				position: relative;
+				top: 22.5px;
+				overflow: hidden;
+				/* 溢出部分隐藏 */
+			}
+
+			#head_logo:hover #head_logo_content {
+				left: 55px;
+				/* 过度设置 */
+				transition-property: left;
+				transition-duration: 300ms;
+			}
+
+			#head_logo_content {
+				width: 110px;
+				height: 55px;
+				background: rgb(255, 103, 0);
+				float: right;
+				position: relative;
+				left: 0px;
+				/* 反向过度 */
+				transition-property: left;
+				transition-duration: 300ms;
+			}
+
+			#head_nav {
+				width: 850px;
+				height: 100px;
+				float: left;
+				margin-left: 10px;
+			}
+
+			#head_nav ul {
+				height: 100px;
+				margin-left: 200px;
+			}
+
+			#head_nav li {
+				float: left;
+				line-height: 100px;
+				list-style: none;
+				margin: 0px 10px;
+				color: rgb(51, 51, 51);
+			}
+
+			#head_nav li:hover {
+				color: rgb(255, 103, 0);
+			}
+
+			#head_seach {
+				width: 296px;
+				height: 100px;
+				/* background: gold; */
+				float: right;
+			}
+
+			#head_seach_box {
+				height: 48px;
+				width: 243px;
+				outline: 0px;
+				border: 1px solid rgb(224, 224, 224);
+				float: left;
+				position: relative;
+				top: 25px;
+				right: -2px;
+				padding: 0px 10px;
+				transition-property: all;
+				transition-duration: 0.5s;
+				transition-delay: 0s;
+			}
+
+			#head_seach_logo {
+				width: 48px;
+				height: 48px;
+				border-bottom: 1px solid rgb(224, 224, 224);
+				border-right: 1px solid rgb(224, 224, 224);
+				border-top: 1px solid rgb(224, 224, 224);
+				background: white;
+				float: right;
+				position: relative;
+				top: 25px;
+			}
+
+			#head_seach_logo:hover {
+				background: rgb(255, 103, 0);
+				color: white;
+			}
+
+			#searchbut {
+				font-size: 20px;
+				line-height: 48px;
+				position: relative;
+				left: 14px;
+			}
+
+			#head_search_content {
+				border: 1px solid rgb(255, 103, 0);
+				width: 242px;
+				height: 300px;
+				background: white;
+				position: relative;
+				top: 23px;
+				left: 2px;
+				z-index: 200;
+				float: left;
+				display: none;
+			}
+
+			#head_search_content ul li {
+				list-style: none;
+				color: rgb(51, 51, 51);
+				font-size: 12px;
+				height: 30px;
+				margin-left: 20px;
+				line-height: 30px;
+			}
+
+			#head_search_content ul li:hover {
+				background: rgb(224, 224, 224);
+			}
+
+			/* ***************head部分结束**************** */
+			#banner {
+				width: 1226px;
+				height: 460px;
+				margin: 0 auto;
+				/* 块级元素居中 */
+				background: orange;
+				position: relative;
+				/*打一个标记，由内向外找第一个postion，标记现在的元素是img的直系父元素*/
+				z-index: 10;
+			}
+
+			#banner_img {
+				width: 1226px;
+				height: 460px;
+				/* ackground: yellow; */
+			}
+
+			.imgs {
+				position: absolute;
+				/* 固定参照物是第一个父元素 */
+				top: 0px;
+				left: 0px;
+			}
+
+			#menu {
+				width: 234px;
+				height: 460px;
+				background: rgba(0, 0, 0, 0.5);
+				/* 設定參照物設定偏移量 */
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+
+			#menu ul {
+				padding-top: 20px;
+			}
+
+			#menu ul a {
+				text-decoration: none;
+			}
+
+			#menu ul li {
+				height: 42px;
+				line-height: 42px;
+				padding-left: 30px;
+				color: rgb(255, 255, 255);
+				font-size: 14px;
+				list-style: none;
+				/* position: relative; */
+				/* 父元素标识 */
+				/* padding-top: 20px; */
+			}
+
+			#menu ul li:hover {
+				background: rgb(255, 103, 0);
+			}
+
+			#menu ul li:hover .menu_pane {
+				display: block;
+			}
+
+			#menu ul li i {
+				/* position: absolute; */
+				/* right: 30px; */
+				font-size: 20px;
+				/* top: 11px; */
+				display: block;
+				float: right;
+				margin-right: 30px;
+				margin-top: 10px;
+			}
+
+			#menu .menu_pane {
+				position: absolute;
+				left: 234px;
+				top: 0px;
+				box-shadow: 2px 5px 5px #888888;
+				display: none;
+			}
+
+			#home_hero {
+				width: 1240px;
+				height: 170px;
+				/* background:darkred; */
+				margin: 0 auto;
+				margin-top: 14px;
+			}
+
+			#home_hero_left {
+				float: left;
+			}
+
+			#home_hero_right {
+				float: left;
+			}
+
+			#home_hero_right img {
+				width: 316px;
+				height: 170px;
+				display: block;
+				float: left;
+				margin-left: 19.3px;
+				/* 反向过度 */
+				transition-duration: 0.5s;
+			}
+
+			#home_hero_right img:hover {
+				box-shadow: 0px 10px 10px #757575;
+				transition-duration: 0.5s;
+
+			}
+
+			#title {
+				width: 1226px;
+				height: 57.6px;
+				/* background: cornflowerblue; */
+				margin: 0 auto;
+				font-size: 22px;
+				font-weight: 200;
+				line-height: 58px;
+				color: #333;
+				margin-top: 19.3px;
+			}
+
+			#title_box {
+				width: 72;
+				height: 24;
+				/* background: deeppink; */
+				margin-top: 15px;
+				float: right;
+			}
+
+			#title_box .title_box_box {
+				display: inline-block;
+				width: 34px;
+				height: 24px;
+				border: 1px solid #e0e0e0;
+				float: left;
+				font-size: 20px;
+				text-align: center;
+				line-height: 16px;
+				color: #b0b0b0;
+				cursor: pointer;
+				/* 光标移到此位置时改变成手型 */
+			}
+
+			#title_box .title_box_box:hover {
+				color: rgb(255, 103, 0);
+			}
+
+			#row {
+				width: 1240px;
+				height: 340px;
+				background: rgb(245, 245, 245);
+				margin: 0 auto;
+			}
+
+			#row_right {
+				float: left;
+			}
+
+			#row_left {
+				float: left;
+				width: 234px;
+				height: 340px;
+				background: rgb(241, 237, 237);
+				border-top: 1px solid rgb(229, 57, 53);
+				margin-left: 14px;
+			}
+
+			#box1 {
+				font-size: 21px;
+				text-align: center;
+				padding-top: 50px;
+				color: rgb(239, 58, 59);
+			}
+
+			#box2 {
+				text-align: center;
+				margin-top: 25px;
+				margin-bottom: 25px;
+			}
+
+			#box3 {
+				font-size: 15px;
+				color: rgba(0, 0, 0, 0.54);
+				text-align: center;
+			}
+
+			#box4 {
+				text-align: center;
+				margin-top: 28px;
+			}
+
+			#box4 .time_text {
+				display: inline-block;
+				width: 46px;
+				height: 46px;
+				background: rgb(96, 87, 81);
+				text-align: center;
+				line-height: 46px;
+				font-size: 24px;
+				color: white;
+			}
+
+			#box4 b {
+				font-size: 28px;
+				line-height: 46px;
+				color: rgb(96, 87, 81);
+			}
+
+			#row_right .row_right_img {
+				float: left;
+				width: 234px;
+				height: 339px;
+				background: white;
+				margin-left: 14px;
+			}
+
+			#row_right .row_right_img .img_content {
+				width: 234px;
+				height: 226.2;
+				/* background: forestgreen; */
+				margin-top: 56px;
+			}
+
+			#row_right .row_right_img .img_content .thumb {
+				width: 160px;
+				height: 165.6px;
+				/* background-color: aquamarine; */
+				margin: 0 auto;
+			}
+
+			#row_right .row_right_img .img_content .thumb img {
+				width: 160px;
+				height: 160px;
+			}
+
+			#row_right .row_right_img .img_content .title {
+				display: block;
+				margin: 0 20px 3px;
+				font-size: 14px;
+				font-weight: 400;
+				text-overflow: ellipsis;
+				/* 显示不完的文本用省略号代替 */
+				overflow: hidden;
+				color: #212121;
+				text-align: center;
+			}
+
+			#row_right .row_right_img .img_content .desc {
+				display: block;
+				height: 18px;
+				margin: 0 20px 12px;
+				font-size: 12px;
+				color: #b0b0b0;
+				text-align: center;
+			}
+
+			#row_right .row_right_img .img_content .price {
+				text-align: center;
+			}
+
+			#row_right span {
+				color: #ff6709;
+			}
+
+			#row_right del {
+				color: #b0b0b0;
+			}
+
+			#home_banner_box {
+				width: 1226;
+				height: 120px;
+				/* background: skyblue; */
+				margin: 0 auto;
+				margin-top: 22px;
+			}
+
+			#container {
+				width: 1226px;
+				height: 272px;
+				/* background: darkmagenta; */
+				margin: 0 auto;
+			}
+
+			#footer_service {
+				width: 1226px;
+				height: 80px;
+				/* background-color: aqua; */
+				position: relative;
+			}
+
+			#footer_links {
+				width: 1226px;
+				height: 192px;
+				background-color: aquamarine;
+			}
+
+			#footer_service ul {
+				display: block;
+				width: 1226px;
+				height: 25px;
+				/* background: crimson; */
+				position: absolute;
+				top: 27.5px;
+				padding-inline-start: 40px;
+				color: #333;
+			}
+
+			#footer_service ul li {
+				display: block;
+				float: left;
+				width: 19.8%;
+				height: 25px;
+				border-left: 1px solid #e0e0e0;
+				font-size: 16px;
+				line-height: 25px;
+				text-align: center;
+			}
+
+			.more a {
+				transition-duration: 0.5s;
+			}
+
+			.more a:hover {
+				color: red;
+				transition-duration: 0.5s;
+			}
+
+			#brick {
+				background-color: #e0e0e0;
+			}
+
+			#brick .brick_item {
+				width: 234px;
+				height: 300px;
+				/* border: 1px solid #212121; */
+				background-color: white;
+				margin: 6px;
+				transition: 0.5s;
+			}
+
+			#brick .brick_item:hover {
+				box-shadow: 5px 5px 30px #888888;
+				transition: 0.5s;
+			}
+
+			.itemImg {
+				width: 100%;
+				height: 200px;
+				/* background-color: red; */
+				position: relative;
+			}
+
+			.itemImg img {
+				width: 160px;
+				height: 160px;
+				position: relative;
+				left: 40px;
+			}
+
+			.brick_item .title {
+				margin: 0 10px 2px;
+				text-align: center;
+				white-space: nowrap;
+				font-size: 14px;
+				font-weight: 400;
+			}
+
+			.brick_item .delc {
+				margin: 0 10px 10px;
+				text-align: center;
+				font-size: 12px;
+				color: #b0b0b0;
+			}
+
+			.brick_item .price {
+				text-align: center;
+				margin: 1 10px 14px;
+			}
+
+			.brick_item .price .num {
+				color: #ff6700;
+			}
+
+			.brick_item .price del {
+				color: #b0b0b0;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 页面的第一块区域 -->
+		<div id="top_box">
+			<div id="top">
+				<div id="top_left">
+					<!-- 导航区域 -->
+					<ul>
+						<a href="#">
+							<li class="content">小米商城</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">MIUI</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">IoT</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">云服务</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">金融</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">优品</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">小爱开放平台</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">企业团购</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">资质证照</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">协议规则</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">下载app</li>
+						</a>
+						<li class="seq">|</li>
+						<a href="#">
+							<li class="content">Select Location</li>
+						</a>
+					</ul>
+				</div>
+				<div id="top_right">
+					<div id="top_right_left">
+						<ul>
+							<a href="#">
+								<li class="content">登录</li>
+							</a>
+							<li class="seq">|</li>
+							<a href="#">
+								<li class="content">注册</li>
+							</a>
+							<li class="seq">|</li>
+							<a href="#">
+								<li class="content">消息通知</li>
+							</a>
+						</ul>
+					</div>
+					<div id="top_right_right">
+						<i class="fa fa-shopping-cart" aria-hidden="true" style="font-size:18px;"></i>
+						购物车（0）
+						<div id="right_right_content">
+							购物车中还没有商品，赶紧选购吧!
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 头部 -->
+		<div id="head">
+			<div id="head_logo">
+				<div id="head_logo_content">
+					<img src="mi/mi-home.png" width="55"><img src="mi/mi-logo.png" width="55">
+				</div>
+			</div>
+			<div id="head_nav">
+				<ul>
+					<a href="#">
+						<li>小米手机</li>
+					</a>
+					<a href="#">
+						<li>Redmi红米</li>
+					</a>
+					<a href="#">
+						<li>电视</li>
+					</a>
+					<a href="#">
+						<li>笔记本</li>
+					</a>
+					<a href="#">
+						<li>家电</li>
+					</a>
+					<a href="#">
+						<li>路由器</li>
+					</a>
+					<a href="#">
+						<li>智能硬件</li>
+					</a>
+					<a href="#">
+						<li>服务</li>
+					</a>
+					<a href="#">
+						<li>社区</li>
+					</a>
+				</ul>
+			</div>
+			<div id="head_seach">
+				<input id="head_seach_box" placeholder="手机">
+				<div type="password" id="head_seach_logo">
+					<i class="fa fa-search" aria-hidden="true" id="searchbut"></i>
+				</div>
+				<div id="head_search_content">
+					<ul>
+						<a href="#" style="text-decoration:none">
+							<li>Redmi K30</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>小米10</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>Redmi Note 8</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>小米CC9</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>黑鲨游戏手机</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>小米电视</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>小米笔记本</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>路由器</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>小爱音箱</li>
+						</a>
+						<a href="#" style="text-decoration:none">
+							<li>净水器</li>
+						</a>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- banner区域 -->
+		<div id="banner">
+			<!-- 轮播 -->
+			<div id="banner_img">
+				<img class="imgs" src="mi/1.jpg" width="1226" />
+				<img class="imgs" src="mi/2.jpg" width="1226" style="display: none;" />
+				<img class="imgs" src="mi/3.jpg" width="1226" style="display: none;" />
+				<img class="imgs" src="mi/4.jpg" width="1226" style="display: none;" />
+				<img class="imgs" src="mi/5.jpg" width="1226" style="display: none;" />
+			</div>
+			<!-- 菜单 -->
+			<div id="menu">
+				<ul>
+					<a href="#">
+						<li>手机 电话卡
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 992px;height: 460px; background: #FF0000;">
+
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>电视 盒子
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 992px;height: 460px; background: #FFFF00;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>笔记本 显示器 平板
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 496px;height: 460px; background: green;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>家电 插线板
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 992px;height: 460px; background: deeppink;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>出行 穿戴
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 744px;height: 460px; background: darkmagenta;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>智能 路由器
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 744px;height: 460px; background: deepskyblue;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>电源 配件
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 496px;height: 460px; background: gray;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>健康 儿童
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 992px;height: 460px; background: yellowgreen;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>耳机 音箱
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 744px;height: 460px; background: darkblue;">
+							</div>
+						</li>
+					</a>
+					<a href="#">
+						<li>生活 箱包
+							<i class="fa fa-angle-right"></i>
+							<div class="menu_pane" style="width: 744px;height: 460px; background: thistle;">
+							</div>
+						</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+		<!-- 下一部分，home-hero -->
+		<div id="home_hero">
+			<div id="home_hero_left">
+				<a href="#">
+					<img src="mi/6.png" style="width: 234px; height: 170px;">
+				</a>
+			</div>
+			<div id="home_hero_right">
+				<a href="#">
+					<img src="mi/7.jpg">
+					<img src="mi/8.jpg">
+					<img src="mi/9.jpg">
+				</a>
+			</div>
+		</div>
+		<!--  little title部分 -->
+		<div id="page_main" style="width: 100%; height: 635px; background: #f5f5f5; ">
+			<div id="title">
+				小米闪购
+				<div id="title_box">
+					<a class="title_box_box">
+						<i class="fa fa-angle-left" aria-hidden="true"></i>
+					</a>
+					<a class="title_box_box">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+			<!-- 倒计时row部分 -->
+			<div id="row">
+				<div id="row_left">
+					<div id="box1">
+						14:00 场
+					</div>
+					<div id="box2">
+						<img src="mi/闪电图标.png">
+					</div>
+					<div id="box3">
+						距离结束还有
+					</div>
+					<div id="box4">
+						<span id="h" class="time_text">
+							02
+						</span>
+						<b>:</b>
+						<span id="m" class="time_text">
+							01
+						</span>
+						<b>:</b>
+						<span id="s" class="time_text">
+							10
+						</span>
+					</div>
+				</div>
+				<div id="row_right">
+					<a href="#">
+						<div class="row_right_img" style="border-top: 1px solid rgb(0,192,165);">
+							<div class="img_content">
+								<div class="thumb">
+									<img src="mi/10.jpg">
+								</div>
+								<h3 class="title">
+									小米真无线蓝牙耳机 Air 2 白色
+								</h3>
+								<p class="desc">
+									智能真无线，轻松舒适戴
+								</p>
+								<p class="price">
+									<span>369元</span>
+									<del>399元</del>
+								</p>
+							</div>
+						</div>
+					</a>
+					<a href="#">
+						<div class="row_right_img" style="border-top: 1px solid rgb(255,172,19)">
+							<div class="img_content">
+								<div class="thumb">
+									<img src="mi/11.jpg">
+								</div>
+								<h3 class="title">
+									小米历史立式充电器 通用...
+								</h3>
+								<p class="desc">横竖可充，迅速感应边充边玩</p>
+								<p class="price">
+									<span>89元</span>
+									<del>99元</del>
+								</p>
+							</div>
+						</div>
+					</a>
+					<a href="#">
+						<div class="row_right_img" style="border-top: 1px solid rgb(131,196,78);">
+							<div class="img_content">
+								<div class="thumb">
+									<img src="mi/12.jpg">
+								</div>
+								<h3 class="title">
+									米兔儿童电话手表3C 4G 蓝色
+								</h3>
+								<p class="desc">能视频通话的AI学习手表</p>
+								<p class="price">
+									<span>349元</span>
+									<del>398元</del>
+								</p>
+							</div>
+						</div>
+					</a>
+					<a href="#">
+						<div class="row_right_img" style="border-top: 1px solid rgb(33,150,243);">
+							<div class="img_content">
+								<div class="thumb">
+									<img src="mi/13.jpg">
+								</div>
+								<h3 class="title">
+									Pro 15 增强版 i7
+								</h3>
+								<p class="desc">再次突破强大</p>
+								<p class="price">
+									<span>6799元</span>
+									<del>6999元</del>
+								</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- home_banner_box部分 -->
+			<div id="home_banner_box">
+				<img src="mi/14.webp" style="width: 1226px; height: 120px;">
+			</div>
+			<!--  -->
+			<div class="box-hd" style="position: relative;
+			margin: 0 auto; height: 58px;width: 1226px;">
+				<h2 class="title" style="margin: 0px;font-size: 22px;font-weight: 200;line-height: 58px;color: #333;">手机
+				</h2>
+				<div class="more"
+					style="position: absolute;top: 0px;right: 0px;font-size: 16px;line-height: 58px;color: #424242;">
+					<a style="cursor: pointer;">查看更多<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+				</div>
+			</div>
+			<!--  -->
+			<div id="" style="position: absolute;width: 100%;height:628px ;background-color: rgb(245,245,245);">
+				<div class="box-hd clearfix"
+					style="display: flex; width: 1226px;height: 628px;position: relative;margin:0 auto;">
+					<div id="" style="width: 234px;height: 614px;">
+						<img src="mi/15.webp">
+					</div>
+					<div id="brick" style="display: flex;flex-wrap: wrap; width: 992px;height: 614px;">
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/16.webp">
+							</div>
+							<h3 class="title">
+								Note 10 Pro
+							</h3>
+
+							<p class="delc">天玑1100年度旗舰芯片</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/17.webp">
+							</div>
+							<h3 class="title">
+								Note 10 5G
+							</h3>
+							<p class="delc">5G小金刚，旗舰长续航</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/18.webp">
+							</div>
+							<h3 class="title">
+								小米MIX FLOD
+							</h3>
+							<p class="delc">折叠大屏|自研芯片</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/19.webp">
+							</div>
+							<h3 class="title">
+								小米11 Ultra
+							</h3>
+							<p class="delc">2K四微曲屏</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/20.webp">
+							</div>
+							<h3 class="title">
+								小米11 Pro
+							</h3>
+							<p class="delc">晓龙888</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/22.webp">
+							</div>
+							<h3 class="title">
+								小米11 青春版
+							</h3>
+							<p class="delc">米11青春版 轻薄</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/22.webp">
+							</div>
+							<h3 class="title">
+								K40 游戏增强版
+							</h3>
+							<p class="delc">轻薄电竞设计</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+						<div class="brick_item">
+							<div class="itemImg">
+								<img src="mi/23.webp">
+							</div>
+							<h3 class="title">
+								黑鲨4 Pro
+							</h3>
+							<p class="delc">黑鲨4 Pro</p>
+							<p class="price">
+								<span class="num">1599元起</span>
+								<del>1699</del>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
